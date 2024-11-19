@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  pytorch-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+  
+  web-container:
+    build:
+      context: ./web_app
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    depends_on:
+      - pytorch-container
